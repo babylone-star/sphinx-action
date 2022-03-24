@@ -14,7 +14,9 @@ if __name__ == "__main__":
     if "INPUT_PRE-BUILD-COMMAND" in os.environ:
         pre_command = os.environ["INPUT_PRE-BUILD-COMMAND"]
         print("Running: {}".format(pre_command))
-        subprocess.run(pre_command, shell=True)
+        result = subprocess.run(pre_command, shell=True)
+        print("Pre-build stdout: ", result.stdout)
+        print("Pre-build stderr: ", result.stderr)
 
     print("Done running-pre-build")
 
