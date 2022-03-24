@@ -15,14 +15,11 @@ if __name__ == "__main__":
         pre_command = os.environ["INPUT_PRE-BUILD-COMMAND"]
         print("Running: {}".format(pre_command))
         result = subprocess.run(pre_command, shell=True)
-        print("Pre-build stdout: ", result.stdout)
-        print("Pre-build stderr: ", result.stderr)
-
     print("Done running-pre-build")
 
-    # github_env = action.GithubEnvironment(
-    #     build_command=os.environ.get("INPUT_BUILD-COMMAND"),
-    # )
+    github_env = action.GithubEnvironment(
+        build_command=os.environ.get("INPUT_BUILD-COMMAND"),
+    )
 
-    # # We build the doc folder passed in the inputs.
-    # action.build_all_docs(github_env, [os.environ.get("INPUT_DOCS-FOLDER")])
+    # We build the doc folder passed in the inputs.
+    action.build_all_docs(github_env, [os.environ.get("INPUT_DOCS-FOLDER")])
